@@ -146,6 +146,28 @@ public class Main {
             }
         }
 
+//      проверить Х, стоящие через клетку
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < (SIZE - 2); j++) {
+                if (map[i][j] == DOT_X && map[i][j + 2] == DOT_X && !move) {
+                    map[i][j + 1] = DOT_O;
+                    move = true;
+                    break;
+                }
+            }
+        }
+
+
+        for (int j = 0; j < SIZE; j++) {
+            for (int i = 0; i < (SIZE - 2); i++) {
+                if (map[i][j] == DOT_X && map[i + 2][j] == DOT_X && !move) {
+                    map[i + 1][j] = DOT_O;
+                    move = true;
+                    break;
+
+                }
+            }
+        }
 
 //            проверить наличие 2-х Х, стоящих рядом
 
@@ -208,30 +230,6 @@ public class Main {
                 }
             }
         }
-
-//      проверить Х, стоящие через клетку
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < (SIZE - 2); j++) {
-                if (map[i][j] == DOT_X && map[i][j + 2] == DOT_X && !move) {
-                    map[i][j + 1] = DOT_O;
-                    move = true;
-                    break;
-                }
-            }
-        }
-
-
-        for (int j = 0; j < SIZE; j++) {
-            for (int i = 0; i < (SIZE - 2); i++) {
-                if (map[i][j] == DOT_X && map[i + 2][j] == DOT_X && !move) {
-                    map[i + 1][j] = DOT_O;
-                    move = true;
-                    break;
-
-                }
-            }
-        }
-
 
         for (int i = 0; i < (SIZE - 2); i++) {
             for (int j = 0; j < (SIZE - 2); j++) {
