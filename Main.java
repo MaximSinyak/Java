@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class Main {
 
     public static char[][] map;
-    public static final int SIZE = 3;
-    public static final int DOTS_TO_WIN = 3;
-    public static final char DOT_EMPTY = '*';
+    public static final int SIZE = 5;
+    public static final int DOTS_TO_WIN = 4;
+    public static final char DOT_EMPTY = '.';
     public static final char DOT_X = 'X';
     public static final char DOT_O = 'O';
     public static Scanner sc = new Scanner(System.in);
@@ -94,13 +94,23 @@ public class Main {
 
     public static boolean checkWin(char symb) {
         for (int i = 0; i < SIZE; i++) {
-            if (map[i][0] == symb && map[i][1] == symb && map[i][2] == symb) return true;
+            for (int j = 0; j < 2; j++) {
+                if (map[i][j] == symb && map[i][j + 1] == symb && map[i][j + 2] == symb && map[i][j + 3] == symb) return true;
+            }
         }
         for (int j = 0; j < SIZE; j++) {
-            if (map[0][j] == symb && map[1][j] == symb && map[2][j] == symb) return true;
+            for (int i = 0; i < 2; i++) {
+                if (map[i][j] == symb && map[i + 1][j] == symb && map[i + 2][j] == symb && map[i + 3][j] == symb) return true;
+            }
         }
-        if (map[0][0] == symb && map[1][1] == symb && map[2][2] == symb) return true;
-        if (map[2][0] == symb && map[1][1] == symb && map[0][2] == symb) return true;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (map[i][j] == symb && map[i + 1][j + 1] == symb && map[i + 2][j + 2] == symb && map[i + 3][j + 3] == symb)
+                    return true;
+                if (map[4 - i][j] == symb && map[3 - i][j + 1] == symb && map[2 - i][j + 2] == symb && map[1 - i][j + 3] == symb)
+                    return true;
+            }
+        }
         return false;
     }
 
