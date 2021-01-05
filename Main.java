@@ -81,7 +81,7 @@ public class Main {
 
         char[] letters = word.toCharArray();
 
-        while (playGame(word, symbols) == false) ;
+        while (!playGame(word, symbols)) ;
 
     }
 
