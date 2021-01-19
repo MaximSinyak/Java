@@ -15,7 +15,7 @@ public class Main {
 
 
        for (Employee i : persArray){
-           if (i.getAge() > 40) Employee.info(i.getFull_name(), i.getPosition(), i.getEmail(), i.getPhone(), i.getSalary(), i.getAge());
+           if (i.getAge() > 40) Employee.info(i.getFullName(), i.getPosition(), i.getEmail(), i.getPhone(), i.getSalary(), i.getAge());
        }
 
 
