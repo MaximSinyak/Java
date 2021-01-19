@@ -1,7 +1,7 @@
 package ru.geekbrains.lesson_5;
 
 public class Employee {
-    private String full_name;
+    private String fullName;
     private String position;
     private String email;
     private int phone;
@@ -10,12 +10,12 @@ public class Employee {
 
 
 
-    public String getFull_name(){
-        return full_name;
+    public String getFullName(){
+        return fullName;
     }
 
-    public void setFull_name(String full_name){
-        this.full_name = full_name;
+    public void setFullName(String fullName){
+        this.fullName = fullName;
     }
 
     public String getPosition(){
@@ -27,6 +27,7 @@ public class Employee {
     }
 
     public String getEmail(){
+
         return email;
     }
 
@@ -58,8 +59,8 @@ public class Employee {
         this.phone = age;
     }
 
-    public Employee(String full_name, String position, String email, int phone, float salary, int age) {
-        this.full_name = full_name;
+    public Employee(String fullName, String position, String email, int phone, float salary, int age) {
+        this.fullName = fullName;
         this.position = position;
         this.email = email;
         this.phone = phone;
@@ -67,8 +68,8 @@ public class Employee {
         this.age = age;
     }
 
-    public static void info(String full_name, String position, String email, int phone, float salary, int age){
-        System.out.println("ФИО: " + full_name + " Должность: " + position + " Email: " + email + " Телефон: " + phone + " Зарплата: " + salary + " Возраст: " + age);
+    public static void info(String fullName, String position, String email, int phone, float salary, int age){
+        System.out.println("ФИО: " + fullName + " Должность: " + position + " Email: " + email + " Телефон: " + phone + " Зарплата: " + salary + " Возраст: " + age);
     }
 
 }
