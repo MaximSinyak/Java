@@ -18,10 +18,10 @@ public class Dog extends Animal {
     @Override
     public void  swim() {
         if (getSwimDistance() <= 10) {
-            System.out.println(getName() + " проплыл " + getRunDistance() + " м.");
+            System.out.println(getName() + " проплыл " + getSwimDistance() + " м.");
         }
         else {
-            System.out.println(getName() + " не проплывёт " + getRunDistance() + " м.");
+            System.out.println(getName() + " не проплывёт " + getSwimDistance() + " м.");
         }
     }
 }
