@@ -19,7 +19,7 @@ public class MyFrame extends JFrame {
         setTitle("Calculator");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(300, 300, 300, 300);
-        setVisible(true);
+        
         ifFirstDigit = true;
 
         total = 0;
@@ -140,6 +140,7 @@ public class MyFrame extends JFrame {
 
 
         add(jPanel);
+	setVisible(true);
     }
 
     public void calculating(ActionEvent e){
