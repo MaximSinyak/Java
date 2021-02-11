@@ -1,0 +1,23 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<GridPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+
+
+    <Button text="Send" GridPane.rowIndex="1" GridPane.columnIndex="1"
+    onAction="#clickSend" />
+
+    <TextArea fx:id="textMain" GridPane.rowIndex="0" GridPane.columnIndex="0" prefHeight="500" prefWidth="700"/>
+
+    <TextArea fx:id="textEnter" GridPane.rowIndex="1" GridPane.columnIndex="0" prefHeight="30" prefWidth="700"
+    onKeyReleased="#textEnterSendText"/>
+
+
+
+</GridPane>
