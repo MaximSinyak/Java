@@ -21,12 +21,16 @@ public class Controller {
     @FXML
     public void clickSend(ActionEvent actionEvent) {
         textMain.setEditable(false);
+        textMain.appendText(data.getHours() + ":" + data.getMinutes() + "  " + "Вы: " +  "\n" + textEnter.getText() + "\n");
+        textEnter.clear();
+        textEnter.requestFocus();
 
 
     }
 
     public void textEnterSendText(KeyEvent keyEvent) {
         if(keyEvent.isShiftDown() && keyEvent.getCode().equals(KeyCode.ENTER)){
+            textMain.setEditable(false);
             textMain.appendText(data.getHours() + ":" + data.getMinutes() + "  " + "Вы: " +  "\n" + textEnter.getText() + "\n");
             textEnter.clear();
             textEnter.requestFocus();
