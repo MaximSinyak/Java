@@ -6,7 +6,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.sql.SQLOutput;
+import java.util.concurrent.TimeoutException;
 
 public class ClientHandler {
     private Server server;
@@ -27,6 +29,9 @@ public class ClientHandler {
 
             new Thread(()-> {
                 try {
+
+                    socket.setSoTimeout(120000);
+
                     // цикл аутентификации
                     while (true) {
                         String str = in.readUTF();
@@ -46,13 +51,14 @@ public class ClientHandler {
                             String newNick = server.getAuthService().getNicknameByLoginAndPassword(token[1], token[2]);
                             login = token[1];
                             if (newNick != null) {
-                                if(!server.isLoginAuthenticated(login)){
+                                if (!server.isLoginAuthenticated(login)) {
                                     nickname = newNick;
                                     sendMsg(Command.AUTH_OK + " " + nickname);
                                     server.subscribe(this);
                                     System.out.println("client " + socket.getRemoteSocketAddress() + " connected with nick: " + nickname);
+                                    socket.setSoTimeout(0);
                                     break;
-                                }else {
+                                } else {
                                     sendMsg("Данная учетная запись уже используется");
                                 }
 
@@ -62,13 +68,13 @@ public class ClientHandler {
                         }
 
                         //если команда регистрация
-                        if(str.startsWith(Command.REG)){
+                        if (str.startsWith(Command.REG)) {
                             String[] token = str.split("\\s", 4);
                             if (token.length < 4) {
                                 continue;
                             }
                             boolean regSuccess = server.getAuthService().registration(token[1], token[2], token[3]);
-                            if(regSuccess) {
+                            if (regSuccess) {
                                 sendMsg(Command.REG_OK);
                             } else {
                                 sendMsg(Command.REG_NO);
@@ -99,6 +105,13 @@ public class ClientHandler {
                             server.broadcastMsg(this, str);
                         }
                     }
+                } catch (SocketTimeoutException e) {
+                    try {
+                        out.writeUTF(Command.END);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+
                 } catch (RuntimeException e) {
                     System.out.println(e.getMessage());
                 } catch (IOException e) {
