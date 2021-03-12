@@ -145,6 +145,13 @@ public class Controller implements Initializable {
                                     }
                                 });
                             }
+                            // разобраться
+                            if (str.startsWith("/yournickis ")) {
+                                nickname = str.split("")[1];
+                                setTitle(nickname);
+                            }
+                            //
+
                         } else {
                             textArea.appendText(str + "\n");
                         }

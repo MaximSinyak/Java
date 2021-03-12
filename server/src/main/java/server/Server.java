@@ -1,6 +1,6 @@
 package server;
 
-import com.sun.media.sound.RIFFInvalidFormatException;
+//import com.sun.media.sound.RIFFInvalidFormatException;
 import commands.Command;
 
 import java.io.DataInputStream;
@@ -31,7 +31,13 @@ public class Server {
 
         try {
             server = new ServerSocket(PORT);
-            System.out.println("Server started");
+//            System.out.println("Server started");
+            // подключение через базу данных
+            if (!SQLHandler.connect()){
+                throw new RuntimeException("Не удалось подключиться к БД");
+            }
+            authService = new DBAuthServise();
+            //
 
             while (true){
                 socket = server.accept();
@@ -43,6 +49,9 @@ public class Server {
         } catch (IOException e){
             e.printStackTrace();
         } finally {
+            //
+            SQLHandler.disconnect();
+            //
             try {
                 socket.close();
             } catch (IOException e) {
@@ -58,6 +67,10 @@ public class Server {
 
     public void broadcastMsg(ClientHandler sender, String msg){
         String message = String.format("[ %s ]: %s", sender.getNickname(), msg);
+        // доделать дату
+        Date date = new Date();
+        SQLHandler.addMessage(sender.getNickname(), "null", msg, date.getHours() + ":" + date.getMinutes());
+        //
         for (ClientHandler c : clients){
             c.sendMsg(message);
         }
@@ -68,6 +81,10 @@ public class Server {
         for (ClientHandler c : clients){
             if (c.getNickname().equals(receiver)) {
                 c.sendMsg(message);
+                // доделать дату
+                Date date = new Date();
+                SQLHandler.addMessage(sender.getNickname(), receiver, msg, date.getHours() + ":" + date.getMinutes());
+                //
                 if (!c.equals(sender)) {
                     sender.sendMsg(msg);
                 }
