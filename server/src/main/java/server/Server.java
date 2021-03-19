@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server {
     private final int PORT = 8189; // проверить свободный порт
@@ -24,8 +26,19 @@ public class Server {
 
     private List<ClientHandler> clients;
     private AuthService authService;
+    //4
+    private ExecutorService executorService;
+
+    public ExecutorService getExecutorService() {
+        return executorService;
+    }
+    //4
+
 
     public Server() {
+        //4
+        executorService = Executors.newCachedThreadPool();
+        //4
         clients = new CopyOnWriteArrayList<>();
         authService = new SimpleAuthServise();
 
