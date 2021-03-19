@@ -27,7 +27,10 @@ public class ClientHandler {
             out = new DataOutputStream(socket.getOutputStream());
 
 
-            new Thread(()-> {
+//4           new Thread(()-> {
+            //4
+            server.getExecutorService().execute(()-> {
+                //4
                 try {
 
                     socket.setSoTimeout(120000);
@@ -149,7 +152,10 @@ public class ClientHandler {
                         e.printStackTrace();
                     }
                 }
-            }).start();
+//4            }).start();
+            // 4
+            });
+            //4
         } catch (IOException e) {
             e.printStackTrace();
         }
