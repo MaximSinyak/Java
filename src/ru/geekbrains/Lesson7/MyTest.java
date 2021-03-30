@@ -14,16 +14,16 @@ public class MyTest {
 
     @Test(priority = 1)
     public static void test1(){
-        System.out.println("Test lowest priority");
+        System.out.println("Test highest priority");
     }
 
     @Test(priority = 5)
     public static void test2(){
-        System.out.println("Test highest priority");
+        System.out.println("Test middle priority");
     }
 
     @Test(priority = 10)
     public static void test3(){
-        System.out.println("Test middle priority");
+        System.out.println("Test lowest priority");
     }
 }
