@@ -13,8 +13,8 @@ public class Main {
 
     public static void start(Class<?> testClass){
 
-        final int MIN_PRIORITY = 1;
-        final int MAX_PRIORITY = 10;
+        final int MAX_PRIORITY = 1;
+        final int MIN_PRIORITY = 10;
         int before = 0;
         int after = 0;
 
@@ -22,11 +22,11 @@ public class Main {
 
         for (Method method : testClass.getDeclaredMethods()) {
             if (method.getAnnotation(BeforeSuite.class) != null) {
-                map.put(MIN_PRIORITY - 1, method);
+                map.put(MAX_PRIORITY - 1, method);
                 before++;
             }
             if (method.getAnnotation(AfterSuite.class) != null) {
-                map.put(MAX_PRIORITY + 1, method);
+                map.put(MIN_PRIORITY + 1, method);
                 after++;
             }
             if (method.getAnnotation(Test.class) != null) {
